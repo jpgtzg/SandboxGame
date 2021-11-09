@@ -79,7 +79,7 @@ Material:
     - _SrcBlend: 1
     - _SunDisk: 2
     - _SunSize: 0.067
-    - _SunSizeConvergence: 5
+    - _SunSizeConvergence: 10
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1

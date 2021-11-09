@@ -91,9 +91,9 @@ Material:
     - _DstBlend: 10
     - _EmissionScaleUI: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 0
+    - _GlossMapScale: 1
     - _Glossiness: 0.38
-    - _GlossyReflections: 0
+    - _GlossyReflections: 1
     - _Metallic: 0.39
     - _Mode: 3
     - _OcclusionStrength: 1
@@ -115,7 +115,7 @@ Material:
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7724290535684291080
+--- !u!114 &7994353384791212055
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
