@@ -1,6 +1,4 @@
-// This script manages the calculation of the
-// appropiate position in which the player is pointing
-// and also calculates the grid position 
+//General manager for the Arcadia Building System
 
 using System.Collections;
 using System.Collections.Generic;
@@ -8,47 +6,80 @@ using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour
 {
-    [HideInInspector]
-    public Vector3 gridPosition;
+    Controls controls;
 
-    [HideInInspector]
-    public RaycastHit hit;
+    //References to other Arcadia Scripts
+    [HideInInspector] public DestroyObjects destroyObjects;
+    [HideInInspector] public PlaceObjects placeObjects;
 
-    [SerializeField]
-    LayerMask groundMask;
+    [HideInInspector] public ObjectInventory objectInventory;
+    [HideInInspector] public HitPositionManager hitPositionManager;
 
+    public State state;
+
+    #region Input System
+    private void Awake()
+    {
+        destroyObjects = GetComponent<DestroyObjects>();
+        placeObjects = GetComponent<PlaceObjects>();
+        objectInventory = GetComponent<ObjectInventory>();
+        hitPositionManager = GetComponent<HitPositionManager>();
+
+        controls = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    public bool leftMouseAction()
+    {
+        return controls.Player.LeftMouseAction.triggered;
+    }
+    #endregion
+
+    public enum State
+    {
+        PlaceObject,
+        DestroyObject
+    }
+
+    void Start()
+    {
+        
+    }
 
     void Update()
     {
-        hit = SendRay();
-
-        bool theresHit = hit.collider != null;
-        if(theresHit)
+        switch (state)
         {
-            gridPosition = CalculateObjectPosition(hit);
+            case State.PlaceObject:
+                placeObjects.scriptActive = true;
+                destroyObjects.scriptActive = false;
+                break;
+            case State.DestroyObject:
+                placeObjects.scriptActive = false;
+                destroyObjects.scriptActive = true;
+                break;
         }
-    }
 
-    RaycastHit SendRay()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-        
-        RaycastHit hit;
-
-        Physics.Raycast(ray, out hit, 6f, groundMask);
-
-        return hit;
-    }
-
-    Vector3 CalculateObjectPosition(RaycastHit hit)
-    {
-        Vector3 calcPos = hit.point + (hit.normal / 2f);
-
-        calcPos = new Vector3(
-            Mathf.Round(calcPos.x),
-            Mathf.Round(calcPos.y),
-            Mathf.Round(calcPos.z));
-
-        return calcPos;
+        //OPTIMIZE
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(state == State.PlaceObject)
+            {
+                state = State.DestroyObject;
+            }
+            else if(state == State.DestroyObject)
+            {
+                state = State.PlaceObject;
+            }
+        }
     }
 }

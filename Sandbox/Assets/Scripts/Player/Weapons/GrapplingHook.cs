@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
-    public Controls controls;
+    Controls controls;
 
     Movement movementScript;
     CharacterController controller;
@@ -64,7 +64,6 @@ public class GrapplingHook : MonoBehaviour
     {
         return controls.Player.RightMouseAction.triggered;
     }
-
     #endregion
 
     void Update()

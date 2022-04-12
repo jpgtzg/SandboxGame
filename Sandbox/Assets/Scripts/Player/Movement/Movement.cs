@@ -4,7 +4,7 @@ using UnityEngine;
 
 public partial class Movement : MonoBehaviour
 {
-    public Controls controls;
+    Controls controls;
     CharacterController controller;
 
     [Header("Speed")]

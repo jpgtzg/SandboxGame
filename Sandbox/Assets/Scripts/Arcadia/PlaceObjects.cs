@@ -2,51 +2,75 @@
 // based on the calculated Vector3 position on the
 // BuildingSystem script
 
+/*
+    Ocupo optimizar la destrucción de los objectos mediante la aplicación del sistema de "object pooling"
+    Por el momento el sistema funciona, pero es increiblemente ineficiente. No se puede compartir esta clase de codigo.
+    Lo mismo pasa con la construcción de objectos. El sistema de "object pooling" sirve tanto para la creación como para
+    la destrucción de objetos. 
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaceObjects : MonoBehaviour
 {
+    HitPositionManager hitPositionManager;
+    ObjectInventory objectInventory;
+    BuildingSystem buildingSystem;
+
     public Material previewMaterial;
 
-    BuildingSystem buildingSystem;
-    ObjectInventory objectInventory;
-
     public GameObject buildObject;
+
+    public bool scriptActive;
+
     GameObject previewPrefab;
-    
+
     Material builtMaterial;
 
     Vector3 buildPosition;
 
+    bool placeObjectBool;
+
     void Start()
     {
-        buildingSystem = gameObject.GetComponent<BuildingSystem>();
-        objectInventory = gameObject.GetComponent<ObjectInventory>();
+        buildingSystem = GetComponent<BuildingSystem>();
+        hitPositionManager = buildingSystem.hitPositionManager;
+        objectInventory = buildingSystem.objectInventory;
 
         CreateNewPrefab();
     }
 
     void Update()
     {
-        //For the inventory
-        /*
-        GameObject lastBuildObject = buildObject;
-        if(buildObject != lastBuildObject)
+        if(scriptActive)
         {
-            createNewPrefab();
-        }
-        */
-        buildPosition = buildingSystem.gridPosition;
+            previewPrefab.active = true;
 
-        MoveObject(buildPosition);
-        PlaceObject(buildPosition);
+            placeObjectBool = buildingSystem.leftMouseAction();
+            //For the inventory
+            /*
+            GameObject lastBuildObject = buildObject;
+            if(buildObject != lastBuildObject)
+            {
+                createNewPrefab();
+            }
+            */
+            buildPosition = hitPositionManager.gridPosition;
+
+            MoveObject(buildPosition);
+            PlaceObject(buildPosition);
+        }
+        else
+        {
+            previewPrefab.active = false;
+        }
     }
 
     public void PlaceObject(Vector3 placePosition)
     {
-        if(Input.GetMouseButtonDown(0)) //REFACTOR WITH NEW INPUT SYSTEM
+        if(placeObjectBool) 
         {
             GameObject createdObject = Instantiate(previewPrefab, placePosition, Quaternion.identity);
             createdObject.GetComponent<BoxCollider>().enabled = true;

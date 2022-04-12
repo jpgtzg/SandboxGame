@@ -112,7 +112,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.17647058, g: 0.5, b: 0.1924707, a: 1}
-    - _Color: {r: 0.17647058, g: 0.5, b: 0.1924707, a: 1}
+    - _Color: {r: 0.17647055, g: 0.5, b: 0.19247067, a: 1}
     - _DiffuseColour: {r: 0.3264874, g: 0.50735295, b: 0.15295199, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -133,4 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 4
+  version: 5

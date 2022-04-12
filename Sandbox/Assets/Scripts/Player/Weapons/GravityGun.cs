@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GravityGun : MonoBehaviour
 {
-    public Controls controls;
+    Controls controls;
 
     [SerializeField] Camera cam;
     [SerializeField] float maxGrabDistance = 10f, minGrabDistance = 1f;

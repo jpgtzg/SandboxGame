@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HandSystem : MonoBehaviour
 {
-    public static Controls controls;
+    Controls controls;
 
     public Camera cam;
     public float maxGrabDistance = 4f;
