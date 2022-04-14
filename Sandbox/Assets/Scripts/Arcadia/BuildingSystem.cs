@@ -17,6 +17,8 @@ public class BuildingSystem : MonoBehaviour
 
     public State state;
 
+    bool changeState;
+
     #region Input System
     private void Awake()
     {
@@ -74,7 +76,8 @@ public class BuildingSystem : MonoBehaviour
                 break;
         }
 
-        bool changeState = ChangeBuildState();
+        changeState = ChangeBuildState();
+
         if (changeState)
         {
             if(state == State.PlaceObject)

@@ -46,25 +46,29 @@ public class PlaceObjects : MonoBehaviour
     {
         if(scriptActive)
         {
-            previewPrefab.active = true;
+            previewPrefab.SetActive(true);
 
             placeObjectBool = buildingSystem.LeftMouseAction();
-            //For the inventory
-            /*
-            GameObject lastBuildObject = buildObject;
-            if(buildObject != lastBuildObject)
-            {
-                createNewPrefab();
-            }
-            */
-            buildPosition = hitPositionManager.gridPosition;
+         
+            buildPosition = hitPositionManager.getGridPosition();
 
-            MoveObject(buildPosition);
-            PlaceObject(buildPosition);
+            if(buildPosition == Vector3.zero)
+            {
+                previewPrefab.SetActive(false);
+            }
+            else
+            {
+                previewPrefab.SetActive(true);
+
+                Debug.Log(buildPosition);
+
+                MoveObject(buildPosition);
+                PlaceObject(buildPosition);
+            }
         }
         else
         {
-            previewPrefab.active = false;
+            previewPrefab.SetActive(false);
         }
     }
 
@@ -74,13 +78,13 @@ public class PlaceObjects : MonoBehaviour
         {
             GameObject createdObject = Instantiate(previewPrefab, placePosition, Quaternion.identity);
             createdObject.GetComponent<BoxCollider>().enabled = true;
-            createdObject.GetComponent<Renderer>().material = builtMaterial;
+            createdObject.GetComponent<Renderer>().sharedMaterial = builtMaterial;
         }
     }
 
-    void MoveObject(Vector3 placePosition)
+    void MoveObject(Vector3 buildPosition)
     {
-        previewPrefab.transform.position = placePosition;
+        previewPrefab.transform.position = buildPosition;
     }
 
     void CreateNewPrefab()
@@ -88,7 +92,7 @@ public class PlaceObjects : MonoBehaviour
         previewPrefab = Instantiate(buildObject, buildObject.transform.position, Quaternion.identity); //Creates a copy of the building prefab called preview prefab to move
         previewPrefab.GetComponent<BoxCollider>().enabled = false; //Deactivates the collider to avoid physics issues
 
-        builtMaterial = buildObject.GetComponent<Renderer>().material; //Stores the built material as the current material in the building prefab object
-        previewPrefab.GetComponent<Renderer>().material = previewMaterial; //Changes the material of the previw prefab object to the preview transparent one
+        builtMaterial = previewPrefab.GetComponent<Renderer>().sharedMaterial; //Stores the built material as the current material in the building prefab object
+        previewPrefab.GetComponent<Renderer>().sharedMaterial = previewMaterial; //Changes the material of the previw prefab object to the preview transparent one
     }
 }

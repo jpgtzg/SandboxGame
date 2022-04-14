@@ -22,11 +22,7 @@ public class HitPositionManager : MonoBehaviour
     {
         hit = SendRay();
 
-        bool theresHit = hit.collider != null;
-        if(theresHit)
-        {
-            gridPosition = CalculateObjectPosition(hit);
-        }
+        getGridPosition();
     }
 
     RaycastHit SendRay()
@@ -50,5 +46,19 @@ public class HitPositionManager : MonoBehaviour
             Mathf.Round(calcPos.z));
 
         return calcPos;
+    }
+
+    public Vector3 getGridPosition()
+    {
+        bool theresHit = hit.collider != null;
+
+        if (theresHit)
+        {
+            return gridPosition = CalculateObjectPosition(hit);
+        }
+        else
+        {
+            return gridPosition = Vector3.zero;
+        }
     }
 }
