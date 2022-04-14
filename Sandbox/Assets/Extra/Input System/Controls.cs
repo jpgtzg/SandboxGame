@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeBuildState"",
+                    ""type"": ""Button"",
+                    ""id"": ""908413e1-5191-459d-915b-4f44d87fd7a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -163,7 +172,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f144707b-d406-41fa-8eee-8d7939bc1fd2"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -190,6 +199,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""RightMouseAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9686af3-361b-4e43-941a-d1ce6e1100a8"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""ChangeBuildState"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -223,6 +243,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_LeftMouseAction = m_Player.FindAction("LeftMouseAction", throwIfNotFound: true);
         m_Player_RightMouseAction = m_Player.FindAction("RightMouseAction", throwIfNotFound: true);
+        m_Player_ChangeBuildState = m_Player.FindAction("ChangeBuildState", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +309,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_LeftMouseAction;
     private readonly InputAction m_Player_RightMouseAction;
+    private readonly InputAction m_Player_ChangeBuildState;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -298,6 +320,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
         public InputAction @LeftMouseAction => m_Wrapper.m_Player_LeftMouseAction;
         public InputAction @RightMouseAction => m_Wrapper.m_Player_RightMouseAction;
+        public InputAction @ChangeBuildState => m_Wrapper.m_Player_ChangeBuildState;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -325,6 +348,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RightMouseAction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseAction;
                 @RightMouseAction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseAction;
                 @RightMouseAction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseAction;
+                @ChangeBuildState.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeBuildState;
+                @ChangeBuildState.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeBuildState;
+                @ChangeBuildState.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeBuildState;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -347,6 +373,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RightMouseAction.started += instance.OnRightMouseAction;
                 @RightMouseAction.performed += instance.OnRightMouseAction;
                 @RightMouseAction.canceled += instance.OnRightMouseAction;
+                @ChangeBuildState.started += instance.OnChangeBuildState;
+                @ChangeBuildState.performed += instance.OnChangeBuildState;
+                @ChangeBuildState.canceled += instance.OnChangeBuildState;
             }
         }
     }
@@ -368,5 +397,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnLeftMouseAction(InputAction.CallbackContext context);
         void OnRightMouseAction(InputAction.CallbackContext context);
+        void OnChangeBuildState(InputAction.CallbackContext context);
     }
 }

@@ -46,7 +46,7 @@ public class DestroyObjects : MonoBehaviour
     {
         if(scriptActive)
         {
-            destroyObjectBool = buildingSystem.leftMouseAction();
+            destroyObjectBool = buildingSystem.LeftMouseAction();
 
             if (lastSelection != currentSelection)
             {

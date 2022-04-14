@@ -11,7 +11,8 @@
                     "id": "39d937e5-4d30-43b5-b514-c154d3b3885c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "fbfec0ad-ffb5-400d-83fb-0df441542534",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Mouse",
@@ -27,7 +29,8 @@
                     "id": "9bf14091-4904-4864-95ba-f7ab8cfa65f1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Grab",
@@ -35,7 +38,8 @@
                     "id": "6022d07e-4137-49e8-9209-fd2282ba1e57",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "LeftMouseAction",
@@ -43,7 +47,8 @@
                     "id": "72564894-abea-4aac-be67-1a10aa849f6a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RightMouseAction",
@@ -51,7 +56,17 @@
                     "id": "c21376d4-6fa3-4d3d-82fb-e1c476b55deb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeBuildState",
+                    "type": "Button",
+                    "id": "908413e1-5191-459d-915b-4f44d87fd7a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -135,7 +150,7 @@
                 {
                     "name": "",
                     "id": "f144707b-d406-41fa-8eee-8d7939bc1fd2",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -162,6 +177,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "RightMouseAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9686af3-361b-4e43-941a-d1ce6e1100a8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "ChangeBuildState",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

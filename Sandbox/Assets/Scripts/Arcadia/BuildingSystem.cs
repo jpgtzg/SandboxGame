@@ -38,9 +38,14 @@ public class BuildingSystem : MonoBehaviour
         controls.Disable();
     }
 
-    public bool leftMouseAction()
+    public bool LeftMouseAction()
     {
         return controls.Player.LeftMouseAction.triggered;
+    }
+
+    public bool ChangeBuildState()
+    {
+        return controls.Player.ChangeBuildState.triggered;
     }
     #endregion
 
@@ -69,8 +74,8 @@ public class BuildingSystem : MonoBehaviour
                 break;
         }
 
-        //OPTIMIZE
-        if (Input.GetKeyDown(KeyCode.R))
+        bool changeState = ChangeBuildState();
+        if (changeState)
         {
             if(state == State.PlaceObject)
             {

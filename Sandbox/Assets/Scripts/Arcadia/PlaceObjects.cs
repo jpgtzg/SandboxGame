@@ -48,7 +48,7 @@ public class PlaceObjects : MonoBehaviour
         {
             previewPrefab.active = true;
 
-            placeObjectBool = buildingSystem.leftMouseAction();
+            placeObjectBool = buildingSystem.LeftMouseAction();
             //For the inventory
             /*
             GameObject lastBuildObject = buildObject;
