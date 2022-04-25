@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GravityGun : MonoBehaviour
+public class GravityGun : InputManager
 {
-    Controls controls;
-
     [SerializeField] Camera cam;
     [SerializeField] float maxGrabDistance = 10f, minGrabDistance = 1f;
     [SerializeField] Transform objectHolder;
@@ -22,39 +20,6 @@ public class GravityGun : MonoBehaviour
 
     Rigidbody grabbedObjectRB;
 
-    #region Input System
-    private void Awake()
-    {
-        controls = new Controls();
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-    public bool pressedGrabbed()
-    {
-        return controls.Player.Grab.triggered;
-    }
-
-    public bool throwItem()
-    {
-        return controls.Player.LeftMouseAction.triggered;
-    }
-
-    public bool freezeItem()
-    {
-        return controls.Player.RightMouseAction.triggered;
-    }
-
-    #endregion
-
     private void Start()
     {
         pickDistance = objectHolder.localPosition.z;
@@ -62,9 +27,9 @@ public class GravityGun : MonoBehaviour
 
     void Update()
     {
-        grabbedPressed = pressedGrabbed();
-        throwObject = throwItem();
-        freezePressed = freezeItem();
+        grabbedPressed = EAction2();
+        throwObject = LeftMouseAction();
+        freezePressed = RightMouseAction();
 
         objectHolder.transform.localPosition = new Vector3(objectHolder.transform.localPosition.x, objectHolder.transform.localPosition.y, pickDistance);
 

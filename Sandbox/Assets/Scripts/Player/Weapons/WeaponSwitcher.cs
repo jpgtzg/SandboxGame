@@ -8,6 +8,14 @@ public class WeaponSwitcher : MonoBehaviour
 
     [SerializeField] int weaponSelected = 0;
 
+    public enum State
+    {
+        Arcadia,
+        HandSystem,
+        GravityGun,
+        GrapplingHook,
+    }
+
     void Start()
     {
         GetWeaponList();
@@ -23,7 +31,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         int previousSelectedWeapon = weaponSelected;
 
-        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if (weaponSelected >= weaponsList.Count - 1)
             {

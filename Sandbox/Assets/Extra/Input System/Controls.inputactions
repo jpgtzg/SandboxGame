@@ -24,24 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Mouse",
-                    "type": "Button",
-                    "id": "9bf14091-4904-4864-95ba-f7ab8cfa65f1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Grab",
-                    "type": "Button",
-                    "id": "6022d07e-4137-49e8-9209-fd2282ba1e57",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "LeftMouseAction",
                     "type": "Button",
                     "id": "72564894-abea-4aac-be67-1a10aa849f6a",
@@ -60,9 +42,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeBuildState",
+                    "name": "QAction1",
                     "type": "Button",
-                    "id": "908413e1-5191-459d-915b-4f44d87fd7a1",
+                    "id": "f7e9a92d-d3b1-4d0c-94a2-d58358ab0162",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EAction2",
+                    "type": "Button",
+                    "id": "d5c6df4c-065d-4ee7-a3c6-4fc03742c5e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FAction3",
+                    "type": "Button",
+                    "id": "dc8f5763-b117-464c-b97f-087ba98a82d0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -126,6 +126,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Arrow Keys",
+                    "id": "3343c286-329b-4a3a-90ba-be5d928f15e5",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "e50b71d0-b61a-4851-a8e5-ce7bf240136c",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "e5e798f6-cffa-4ccd-915b-eac0099044a2",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "9ec3db25-e2d2-486f-b197-22867a3eaaf3",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "932cff59-b323-4a8d-a990-214d86eff2f9",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "ea251e76-b743-44df-bd8b-20639091fa23",
                     "path": "<Keyboard>/space",
@@ -133,28 +188,6 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fb132f4f-b26b-45f2-a1eb-9579cb480287",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f144707b-d406-41fa-8eee-8d7939bc1fd2",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -182,12 +215,34 @@
                 },
                 {
                     "name": "",
-                    "id": "d9686af3-361b-4e43-941a-d1ce6e1100a8",
+                    "id": "1657711b-37b0-4989-b9c7-8be5efe8fbb0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QAction1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06c7498e-12cb-40dc-9e14-fbddb93cc895",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EAction2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1239230-c6aa-426b-95fa-3bd6a05449b2",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "ChangeBuildState",
+                    "groups": "",
+                    "action": "FAction3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,10 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingSystem : MonoBehaviour
+public class BuildingSystem : InputManager
 {
-    Controls controls;
-
     //References to other Arcadia Scripts
     [HideInInspector] public DestroyObjects destroyObjects;
     [HideInInspector] public PlaceObjects placeObjects;
@@ -19,37 +17,13 @@ public class BuildingSystem : MonoBehaviour
 
     bool changeState;
 
-    #region Input System
     private void Awake()
     {
         destroyObjects = GetComponent<DestroyObjects>();
         placeObjects = GetComponent<PlaceObjects>();
         objectInventory = GetComponent<ObjectInventory>();
         hitPositionManager = GetComponent<HitPositionManager>();
-
-        controls = new Controls();
     }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-    public bool LeftMouseAction()
-    {
-        return controls.Player.LeftMouseAction.triggered;
-    }
-
-    public bool ChangeBuildState()
-    {
-        return controls.Player.ChangeBuildState.triggered;
-    }
-    #endregion
 
     public enum State
     {
@@ -76,7 +50,7 @@ public class BuildingSystem : MonoBehaviour
                 break;
         }
 
-        changeState = ChangeBuildState();
+        changeState = FAction3();
 
         if (changeState)
         {

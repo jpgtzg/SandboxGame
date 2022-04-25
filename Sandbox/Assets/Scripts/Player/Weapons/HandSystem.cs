@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandSystem : MonoBehaviour
+public class HandSystem : InputManager
 {
-    Controls controls;
-
     public Camera cam;
     public float maxGrabDistance = 4f;
     public Transform objectHolder;
@@ -16,29 +14,6 @@ public class HandSystem : MonoBehaviour
 
     [HideInInspector] public Rigidbody grabbedObjectRB;
 
-    #region Input System
-    private void Awake()
-    {
-        controls = new Controls();
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-    public bool pressedGrabbed()
-    {
-        return controls.Player.Grab.triggered;
-    }
-
-    #endregion
-
     private void Start()
     {
         pickDistance = maxGrabDistance;
@@ -46,7 +21,7 @@ public class HandSystem : MonoBehaviour
 
     void Update()
     {
-        grabbedPressed = pressedGrabbed();
+        grabbedPressed = EAction2();
 
         objectHolder.transform.localPosition = new Vector3(objectHolder.transform.localPosition.x, objectHolder.transform.localPosition.y, pickDistance);
 

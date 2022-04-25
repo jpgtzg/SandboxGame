@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrapplingHook : MonoBehaviour
+public class GrapplingHook : InputManager
 {
-    Controls controls;
-
     Movement movementScript;
     CharacterController controller;
 
@@ -37,39 +35,16 @@ public class GrapplingHook : MonoBehaviour
     bool shoot;
     bool cancel;
 
-    #region Input System
     private void Awake()
     {
-        controls = new Controls();
         movementScript = player.gameObject.GetComponent<Movement>();
         controller = player.gameObject.GetComponent<CharacterController>();
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-    public bool shootHook()
-    {
-        return controls.Player.LeftMouseAction.triggered;
-    }
-
-    public bool cancelHook()
-    {
-        return controls.Player.RightMouseAction.triggered;
-    }
-    #endregion
-
     void Update()
     {
-        shoot = shootHook();
-        cancel = cancelHook();
+        shoot = LeftMouseAction();
+        cancel = RightMouseAction();
 
         movementScript.velocity += characterMomentum;
         hookShotSpeed = Mathf.Clamp(Vector3.Distance(player.position, hookTargetPosition), HookSpeedMin, HookSpeedMax);

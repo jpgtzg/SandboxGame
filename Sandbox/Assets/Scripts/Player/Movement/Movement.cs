@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class Movement : MonoBehaviour
+public partial class Movement : InputManager
 {
-    Controls controls;
     CharacterController controller;
 
     [Header("Speed")]
@@ -33,33 +32,11 @@ public partial class Movement : MonoBehaviour
     //Gravity
     bool isGrounded;
 
-    #region Input System
+
     private void Awake()
     {
-        controls = new Controls();
         controller = GetComponent<CharacterController>();
     }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-    public Vector2 getPlayerMovement()
-    {
-        return controls.Player.Movement.ReadValue<Vector2>();
-    }
-
-    public bool playerJumpThisFrame()
-    {
-        return controls.Player.Jump.triggered;
-    }
-    #endregion
 
     public enum State
     {
@@ -96,7 +73,7 @@ public partial class Movement : MonoBehaviour
 
     void move()
     {
-        Vector2 movement = getPlayerMovement();
+        Vector2 movement = MovementAction();
 
         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
         controller.Move(move.normalized * currentSpeed * Time.deltaTime);
@@ -115,7 +92,7 @@ public partial class Movement : MonoBehaviour
 
     void physics()
     {
-        bool isJumping = playerJumpThisFrame();
+        bool isJumping = JumpAction();
 
         if (isJumping && isGrounded)
         {
